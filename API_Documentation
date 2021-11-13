@@ -1,0 +1,28 @@
+API Documentation
+
+
+##log in to your account
+    POST /login :
+        explanations: send your username and password in the body of your Http request in a JSON format. for example: {"username":"abcd","password":"1234"}
+            return value: {"user":{"username":"...","access_token":"...","refresh_token":"..."}}
+
+##update your profile
+    PUT /write-profile :
+        explanations: send your lastname, firstname, age and city in the body of your Http request in a JSON format. all of them are optional. for example: {"lastname":"joyce","age":23}. you also need to send your access token(obtained from /login request) in the Http authorization header.
+            return value: {"user":{"username":"...","lastname":"...","firstname":"...","age":"...","city":"..."}}
+
+##read a user's profile
+    GET /read-profile/<username>
+            return value: {"user":{"username":"...","lastname":"...","firstname":"...","age":"...","city":"..."}}
+
+
+##read all users' profiles
+    GET /read-all-profiles
+            return value: {"user1": {"username":"...","lastname":"...","firstname":"...","age":"...","city":"..."},...}
+
+
+##get a new access token after your access token gets expired.
+    POST /refresh
+        explanations: send your refresh token in the Http authorization header.
+            return value: {"access_token":"..."}
+
